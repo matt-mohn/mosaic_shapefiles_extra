@@ -49,7 +49,7 @@ These are definitional decisions baked into the joined output, not encoded in DR
 
 ## Output schema
 
-Each `<State>_DRA_Mosaic.shp` contains exactly these 14 attributes plus geometry:
+Most `<State>_DRA_Mosaic.shp` files contain these **14 attributes** plus geometry:
 
 | Column      | Type    | Meaning                                                  |
 |-------------|---------|----------------------------------------------------------|
@@ -67,6 +67,22 @@ Each `<State>_DRA_Mosaic.shp` contains exactly these 14 attributes plus geometry
 | BIDEN_20    | int     | 2020 presidential — Democratic (Biden) votes             |
 | TRUMP_16    | int     | 2016 presidential — Republican (Trump) votes             |
 | CLINTON_16  | int     | 2016 presidential — Democratic (Clinton) votes           |
+
+### Estimated-2024 schema (15 attributes)
+
+Eight states ship with an alternate 2024 schema because precinct-level 2024 results were not available at the time of build: **Arkansas, Connecticut, Maine, Michigan, New Jersey, Oklahoma, Oregon, Pennsylvania**. In those files, `TRUMP_24` and `HARRIS_24` are replaced by:
+
+| Column       | Type    | Meaning                                                                |
+|--------------|---------|------------------------------------------------------------------------|
+| DT_EST_24    | int     | 2024 R (Trump) — county-swing estimate                                 |
+| KH_EST_24    | int     | 2024 D (Harris) — county-swing estimate                                |
+| EST_24_FLG   | string  | Estimate flag (currently always `scaled`)                              |
+
+Construction: each county's reported 2020→2024 D/R swing is applied uniformly to every precinct in that county. **County-level and state-level sums equal true reported 2024 totals.** Per-precinct values are modeled — treat with caution for any analysis that depends on within-county variation.
+
+### Island-precinct deletions
+
+Three states have precincts removed from the geometry because they are physically isolated from the rest of the state's polygon graph (offshore islands), which Mosaic's ReCom cannot handle: **California, New York, Rhode Island**. Each affects a small population. Hawaii is excluded from the repo entirely for the same reason.
 
 CRS is preserved from the TIGER source: **NAD83 (EPSG:4269)**.
 
