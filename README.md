@@ -14,9 +14,9 @@ Each `<State>_DRA_Mosaic.zip` contains a single TIGER/Line VTD shapefile with 14
 | `VAP_BLACK` | int | 2020 VAP, Black any-part (incl. Hispanic) |
 | `VAP_LATINO` | int | 2020 VAP, all Hispanic regardless of race |
 | `VAP_ASIAN` | int | 2020 VAP, Asian any-part (incl. Hispanic) |
-| `D_16` / `R_16` | int | 2016 presidential D / R votes |
-| `D_20` / `R_20` | int | 2020 presidential D / R votes |
-| `D_24` / `R_24` | int | 2024 presidential D / R votes |
+| `TRUMP_16` / `CLINTON_16` | int | 2016 presidential R / D votes |
+| `TRUMP_20` / `BIDEN_20` | int | 2020 presidential R / D votes |
+| `TRUMP_24` / `HARRIS_24` | int | 2024 presidential R / D votes |
 
 Full schema notes and definitional choices: see [`DATA_LICENSE.md`](DATA_LICENSE.md).
 
